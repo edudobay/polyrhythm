@@ -1,0 +1,22 @@
+{
+  "name": "polyrhythm",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.24.1",
+    "mocha": "^3.4.2"
+  },
+  "scripts": {
+    "test": "mocha --require babel-register \"src/**/*.test.js\""
+  },
+  "author": "",
+  "license": "ISC"
+}
