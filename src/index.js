@@ -18,6 +18,10 @@ const presenterRight = new OffsetPresenter(document.querySelector('.right-hand')
 
 const bpm = new BpmMatcher()
 
+const bpmValue = new ObservableValue(60)
+const bpmPresenter = new BpmPresenter(document.querySelector('.bpm-component'))
+const metronome = new MetronomePresenter(document.querySelector('.metronome-component'), bpmValue)
+
 class EventHandler extends BaseEventHandler {
     constructor() {
         super({
@@ -25,6 +29,7 @@ class EventHandler extends BaseEventHandler {
             [InputEvent.Type.TAP]: 'onTap',
             [InputEvent.Type.BPM_CHANGE]: 'onBpmChange',
             [InputEvent.Type.BPM_MANUAL_INPUT]: 'onBpmManualInput',
+            [InputEvent.Type.TOGGLE_START]: 'onToggleStart',
         })
     }
 
@@ -59,6 +64,15 @@ class EventHandler extends BaseEventHandler {
         }
     }
 
+    onToggleStart(event) {
+        if (metronome.started()) {
+            metronome.stop()
+        } else {
+            metronome.start()
+        }
+    }
+}
+
 function changeBpm(newBpm) {
     bpmValue.change(newBpm)
     bpmPresenter.displayBpm(newBpm)
@@ -67,10 +81,5 @@ function changeBpm(newBpm) {
 const handler = new EventHandler()
 watcher.subscribe(handler.asCallable())
 
-const bpmValue = new ObservableValue(60)
-const bpmPresenter = new BpmPresenter(document.querySelector('.bpm-component'))
-const metronome = new MetronomePresenter(document.querySelector('.metronome-component'), bpmValue)
-
 metronome.start()
-document.querySelector('.metronome-stop').addEventListener('click', event => metronome.stop())
 

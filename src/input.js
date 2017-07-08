@@ -30,6 +30,7 @@ InputEvent.Type = new EnumType('InputEventType', [
     'TAP',
     'BPM_CHANGE',
     'BPM_MANUAL_INPUT',
+    'TOGGLE_START',
 ])
 
 KeyInputEvent.Which = new EnumType('KeyInputEventType', ['LEFT', 'RIGHT'])

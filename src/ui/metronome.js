@@ -1,10 +1,16 @@
 export class MetronomePresenter {
     constructor(element, bpmSource) {
+        this.rootElement = element
         this.bpmSource = bpmSource
         this.needle = element.querySelector('.metronome-needle')
         this.maxAngle = 30 // degrees
         this.lastTimestamp = null
         this.animation = null
+
+        this.stopButton = element.querySelector('.metronome-stop')
+        this.stopButton.addEventListener('click', event => this.stop())
+        this.startButton = element.querySelector('.metronome-start')
+        this.startButton.addEventListener('click', event => this.start())
     }
 
     needleAt(pos) {
@@ -19,12 +25,19 @@ export class MetronomePresenter {
 
     start() {
         this.animation = window.requestAnimationFrame(this.stepAnimation.bind(this))
+        this.showAndHideControls()
     }
 
     stop() {
         if (this.animation !== null) {
-            window.requestAnimationFrame(this.animation)
+            window.cancelAnimationFrame(this.animation)
         }
+        this.animation = null
+        this.showAndHideControls()
+    }
+
+    started() {
+        return this.animation !== null
     }
 
     stepAnimation(timestamp) {
@@ -35,6 +48,12 @@ export class MetronomePresenter {
         const pos = Math.cos(beat * Math.PI)
         this.needleAt(pos)
         this.start()
+    }
+
+    showAndHideControls() {
+        const started = this.started()
+        this.rootElement.classList.toggle('metronome--stopped', !started)
+        this.rootElement.classList.toggle('metronome--started', started)
     }
 
 }

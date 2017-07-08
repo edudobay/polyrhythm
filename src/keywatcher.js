@@ -23,6 +23,8 @@ export class KeyWatcher extends observableMixin(Object) {
             this.notify(new BpmInputEvent(BpmInputEvent.Type.INCREASE, event.timeStamp))
         } else if (lowerKey === 'b') {
             this.notify(new InputEvent(InputEvent.Type.BPM_MANUAL_INPUT, event.timeStamp))
+        } else if (lowerKey === ' ') {
+            this.notify(new InputEvent(InputEvent.Type.TOGGLE_START, event.timeStamp))
         }
     }
 

@@ -43,3 +43,11 @@
     background-color: #000;
 }
 
+.metronome-component.metronome--stopped .metronome-stop {
+    display: none;
+}
+
+.metronome-component.metronome--started .metronome-start {
+    display: none;
+}
+
