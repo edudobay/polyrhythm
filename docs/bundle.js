@@ -323,10 +323,10 @@ class KeyWatcher extends __WEBPACK_IMPORTED_MODULE_0__common_observable_js__["b"
 
     constructor(document) {
         super()
-        document.addEventListener('keydown', this.onKeyUp.bind(this))
+        document.addEventListener('keydown', this.onKeyEvent.bind(this))
     }
 
-    onKeyUp(event) {
+    onKeyEvent(event) {
         const lowerKey = event.key.toLowerCase()
 
         if (lowerKey === 'f') {

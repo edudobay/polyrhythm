@@ -5,10 +5,10 @@ export class KeyWatcher extends observableMixin(Object) {
 
     constructor(document) {
         super()
-        document.addEventListener('keydown', this.onKeyUp.bind(this))
+        document.addEventListener('keydown', this.onKeyEvent.bind(this))
     }
 
-    onKeyUp(event) {
+    onKeyEvent(event) {
         const lowerKey = event.key.toLowerCase()
 
         if (lowerKey === 'f') {
