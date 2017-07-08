@@ -9,8 +9,10 @@ import { BpmPresenter } from './ui/bpm.js'
 import { OffsetPresenter } from './ui/offset.js'
 import { MetronomePresenter } from './ui/metronome.js'
 
+const bpmValue = new ObservableValue(60)
+
 const watcher = new KeyWatcher(document)
-const measure = new RhythmMeasure(100, Date.now())
+const measure = new RhythmMeasure(bpmValue, Date.now())
 const matcherLeft = new RhythmMatcher(measure)
 const matcherRight = new RhythmMatcher(measure)
 const presenterLeft = new OffsetPresenter(document.querySelector('.left-hand'))
@@ -18,7 +20,6 @@ const presenterRight = new OffsetPresenter(document.querySelector('.right-hand')
 
 const bpm = new BpmMatcher()
 
-const bpmValue = new ObservableValue(60)
 const bpmPresenter = new BpmPresenter(document.querySelector('.bpm-component'))
 const metronome = new MetronomePresenter(document.querySelector('.metronome-component'), bpmValue)
 

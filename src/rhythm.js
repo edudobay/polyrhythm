@@ -14,19 +14,19 @@ class RhythmTimeEvent {
 }
 
 export class RhythmMeasure {
-    constructor(bpm, startAt) {
+    constructor(bpmSource, startAt) {
         this.startAt = startAt
-        this.bpm = bpm
-        this.period = 60000 / bpm
+        this.bpmSource = bpmSource
     }
 
     locate(eventTimestamp) {
         const eventTime = eventTimestamp - this.startAt
-
-        const beat = eventTime / this.period
+        const bpm = this.bpmSource.value()
+        const period = 60000 / bpm
+        const beat = eventTime / period
         const closestBeat = Math.round(beat)
         const offset = beat - closestBeat
-        return new RhythmTimeEvent(beat, offset, offset * this.period)
+        return new RhythmTimeEvent(beat, offset, offset * period)
     }
 }
 

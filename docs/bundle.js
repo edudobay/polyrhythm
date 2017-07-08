@@ -200,8 +200,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+const bpmValue = new __WEBPACK_IMPORTED_MODULE_1__common_observable_js__["a" /* ObservableValue */](60)
+
 const watcher = new __WEBPACK_IMPORTED_MODULE_2__keywatcher_js__["a" /* KeyWatcher */](document)
-const measure = new __WEBPACK_IMPORTED_MODULE_4__rhythm_js__["c" /* RhythmMeasure */](100, Date.now())
+const measure = new __WEBPACK_IMPORTED_MODULE_4__rhythm_js__["c" /* RhythmMeasure */](bpmValue, Date.now())
 const matcherLeft = new __WEBPACK_IMPORTED_MODULE_4__rhythm_js__["b" /* RhythmMatcher */](measure)
 const matcherRight = new __WEBPACK_IMPORTED_MODULE_4__rhythm_js__["b" /* RhythmMatcher */](measure)
 const presenterLeft = new __WEBPACK_IMPORTED_MODULE_6__ui_offset_js__["a" /* OffsetPresenter */](document.querySelector('.left-hand'))
@@ -209,7 +211,6 @@ const presenterRight = new __WEBPACK_IMPORTED_MODULE_6__ui_offset_js__["a" /* Of
 
 const bpm = new __WEBPACK_IMPORTED_MODULE_4__rhythm_js__["a" /* BpmMatcher */]()
 
-const bpmValue = new __WEBPACK_IMPORTED_MODULE_1__common_observable_js__["a" /* ObservableValue */](60)
 const bpmPresenter = new __WEBPACK_IMPORTED_MODULE_5__ui_bpm_js__["a" /* BpmPresenter */](document.querySelector('.bpm-component'))
 const metronome = new __WEBPACK_IMPORTED_MODULE_7__ui_metronome_js__["a" /* MetronomePresenter */](document.querySelector('.metronome-component'), bpmValue)
 
@@ -404,19 +405,19 @@ class RhythmTimeEvent {
 }
 
 class RhythmMeasure {
-    constructor(bpm, startAt) {
+    constructor(bpmSource, startAt) {
         this.startAt = startAt
-        this.bpm = bpm
-        this.period = 60000 / bpm
+        this.bpmSource = bpmSource
     }
 
     locate(eventTimestamp) {
         const eventTime = eventTimestamp - this.startAt
-
-        const beat = eventTime / this.period
+        const bpm = this.bpmSource.value()
+        const period = 60000 / bpm
+        const beat = eventTime / period
         const closestBeat = Math.round(beat)
         const offset = beat - closestBeat
-        return new RhythmTimeEvent(beat, offset, offset * this.period)
+        return new RhythmTimeEvent(beat, offset, offset * period)
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["c"] = RhythmMeasure;
