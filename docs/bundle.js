@@ -327,22 +327,29 @@ class KeyWatcher extends __WEBPACK_IMPORTED_MODULE_0__common_observable_js__["b"
     }
 
     onKeyEvent(event) {
-        const lowerKey = event.key.toLowerCase()
+        switch (event.code) {
+            case 'KeyA': case 'KeyS': case 'KeyD': case 'KeyF':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */].Which.LEFT, event.timeStamp))
+                break
 
-        if (lowerKey === 'f') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */].Which.LEFT, event.timeStamp))
-        } else if (lowerKey === 'j') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */].Which.RIGHT, event.timeStamp))
-        } else if (lowerKey === 'p') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.TAP, event.timeStamp))
-        } else if (lowerKey === '-') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */].Type.DECREASE, event.timeStamp))
-        } else if (lowerKey === '=' || lowerKey === '+') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */].Type.INCREASE, event.timeStamp))
-        } else if (lowerKey === 'b') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.BPM_MANUAL_INPUT, event.timeStamp))
-        } else if (lowerKey === ' ') {
-            this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.TOGGLE_START, event.timeStamp))
+            case 'KeyJ': case 'KeyK': case 'KeyL': case 'Semicolon':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["c" /* KeyInputEvent */].Which.RIGHT, event.timeStamp))
+                break
+            case 'KeyP':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.TAP, event.timeStamp))
+                break
+            case 'Minus':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */].Type.DECREASE, event.timeStamp))
+                break
+            case 'Equal':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */].Type.INCREASE, event.timeStamp))
+                break
+            case 'KeyB':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.BPM_MANUAL_INPUT, event.timeStamp))
+                break
+            case 'Space':
+                this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.TOGGLE_START, event.timeStamp))
+                break
         }
     }
 
