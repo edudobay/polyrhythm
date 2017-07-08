@@ -336,7 +336,7 @@ class KeyWatcher extends __WEBPACK_IMPORTED_MODULE_0__common_observable_js__["b"
             this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.TAP, event.timeStamp))
         } else if (lowerKey === '-') {
             this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */].Type.DECREASE, event.timeStamp))
-        } else if (lowerKey === '=') {
+        } else if (lowerKey === '=' || lowerKey === '+') {
             this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["a" /* BpmInputEvent */].Type.INCREASE, event.timeStamp))
         } else if (lowerKey === 'b') {
             this.notify(new __WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */](__WEBPACK_IMPORTED_MODULE_1__input_js__["b" /* InputEvent */].Type.BPM_MANUAL_INPUT, event.timeStamp))
