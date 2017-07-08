@@ -12,10 +12,12 @@
   },
   "devDependencies": {
     "babel-register": "^6.24.1",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "webpack": "^3.1.0"
   },
   "scripts": {
-    "test": "mocha --require babel-register \"src/**/*.test.js\""
+    "test": "mocha --require babel-register \"src/**/*.test.js\"",
+    "build": "rsync -v -a --delete static/ dist/ && webpack"
   },
   "author": "",
   "license": "ISC"
