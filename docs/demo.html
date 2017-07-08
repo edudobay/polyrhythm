@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>polyrhythm</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+<div class="hand-container">
+  <div class="left-hand hand-component">
+    <div class="offset">
+      <span class="offset-text"></span>
+      <div class="offset-box">
+        <span class="offset-needle"></span>
+      </div>
+    </div>
+  </div>
+  <div class="right-hand hand-component">
+    <div class="offset">
+      <span class="offset-text"></span>
+      <div class="offset-box">
+        <span class="offset-needle"></span>
+      </div>
+    </div>
+  </div>
+  <div class="bpm-component">
+    <span class="bpm-text"></span>
+  </div>
+  <div class="metronome-component">
+    <div class="metronome-box">
+      <div class="metronome-needle"></div>
+    </div>
+    <button class="metronome-stop">Stop</button>
+    <button class="metronome-start">Start</button>
+  </div>
+</div>
+
+<div class="help">
+  <table class="help">
+    <tbody>
+      <tr>
+        <th>f</th>
+        <td>left beat</td>
+      </tr>
+      <tr>
+        <th>j</th>
+        <td>right beat</td>
+      </tr>
+      <tr>
+        <th>p</th>
+        <td>tap tempo</td>
+      </tr>
+      <tr>
+        <th>-</th>
+        <td>decrease tempo by 2 BPM</td>
+      </tr>
+      <tr>
+        <th>+</th>
+        <td>increase tempo by 2 BPM</td>
+      </tr>
+      <tr>
+        <th>b</th>
+        <td>manually input BPM</td>
+      </tr>
+      <tr>
+        <th>SPACE</th>
+        <td>start/stop metronome</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <script src="bundle.js"></script>
+  </body>
+</html>

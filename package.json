@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "mocha --require babel-register \"src/**/*.test.js\"",
-    "build": "rsync -v -a --delete static/ dist/ && webpack"
+    "build": "rsync -v -a --delete static/ docs/ && webpack"
   },
   "author": "",
   "license": "ISC"
