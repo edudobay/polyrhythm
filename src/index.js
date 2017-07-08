@@ -23,6 +23,8 @@ class EventHandler extends BaseEventHandler {
         super({
             [InputEvent.Type.KEY]: 'onKey',
             [InputEvent.Type.TAP]: 'onTap',
+            [InputEvent.Type.BPM_CHANGE]: 'onBpmChange',
+            [InputEvent.Type.BPM_MANUAL_INPUT]: 'onBpmManualInput',
         })
     }
 
@@ -37,9 +39,29 @@ class EventHandler extends BaseEventHandler {
 
     onTap(event) {
         bpm.input(event)
-        bpmValue.change(bpm.bpm())
-        bpmPresenter.displayBpm(bpm.bpm())
+        const newBpm = bpm.bpm()
+        if (!isNaN(newBpm)) {
+            changeBpm(newBpm)
+        }
     }
+
+    onBpmChange(event) {
+        const oldBpm = bpmValue.value()
+        const newBpm = event.transform(oldBpm)
+        changeBpm(newBpm)
+    }
+
+    onBpmManualInput(event) {
+        const oldBpm = bpmValue.value()
+        const newBpm = parseFloat(prompt('Type the new BPM value', oldBpm))
+        if (!isNaN(newBpm)) {
+            changeBpm(newBpm)
+        }
+    }
+
+function changeBpm(newBpm) {
+    bpmValue.change(newBpm)
+    bpmPresenter.displayBpm(newBpm)
 }
 
 const handler = new EventHandler()

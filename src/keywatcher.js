@@ -1,5 +1,5 @@
 import { observableMixin } from './common/observable.js'
-import { InputEvent, KeyInputEvent } from './input.js'
+import { InputEvent, KeyInputEvent, BpmInputEvent } from './input.js'
 
 export class KeyWatcher extends observableMixin(Object) {
 
@@ -17,6 +17,12 @@ export class KeyWatcher extends observableMixin(Object) {
             this.notify(new KeyInputEvent(KeyInputEvent.Which.RIGHT, event.timeStamp))
         } else if (lowerKey === 'p') {
             this.notify(new InputEvent(InputEvent.Type.TAP, event.timeStamp))
+        } else if (lowerKey === '-') {
+            this.notify(new BpmInputEvent(BpmInputEvent.Type.DECREASE, event.timeStamp))
+        } else if (lowerKey === '=') {
+            this.notify(new BpmInputEvent(BpmInputEvent.Type.INCREASE, event.timeStamp))
+        } else if (lowerKey === 'b') {
+            this.notify(new InputEvent(InputEvent.Type.BPM_MANUAL_INPUT, event.timeStamp))
         }
     }
 
